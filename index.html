@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Song</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:Arial,sans-serif;
+
+    background:
+    radial-gradient(circle at center,
+    #22112d 0%,
+    #120817 45%,
+    #000000 100%);
+}
+
+/* BACKGROUND AURORA */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+    inset:-40%;
+
+    background:
+
+    radial-gradient(circle at 20% 20%,
+    rgba(255,120,220,0.15),
+    transparent 28%),
+
+    radial-gradient(circle at 80% 70%,
+    rgba(170,120,255,0.13),
+    transparent 30%),
+
+    radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,0.05),
+    transparent 35%);
+
+    animation:aurora 18s ease infinite;
+
+    filter:blur(80px);
+}
+
+@keyframes aurora{
+
+    0%{
+        transform:
+        translateX(0px)
+        translateY(0px)
+        rotate(0deg);
+    }
+
+    50%{
+        transform:
+        translateX(-30px)
+        translateY(-20px)
+        rotate(8deg);
+    }
+
+    100%{
+        transform:
+        translateX(0px)
+        translateY(0px)
+        rotate(0deg);
+    }
+}
+
+/* PARTICLES */
+
+.particles{
+
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#ffb6ec;
+
+    box-shadow:
+    0 0 10px rgba(255,182,236,0.9),
+    0 0 20px rgba(255,182,236,0.2);
+
+    animation:float linear infinite;
+}
+
+@keyframes float{
+
+    from{
+
+        transform:
+        translateY(110vh);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+
+        transform:
+        translateY(-120vh);
+
+        opacity:0;
+    }
+}
+
+/* PLAYER */
+
+.player{
+
+    position:relative;
+
+    width:min(430px,90vw);
+
+    padding:18px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(25,10,30,0.97),
+    rgba(0,0,0,0.96));
+
+    border:1px solid rgba(255,180,230,0.08);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    0 0 60px rgba(0,0,0,1),
+    inset 0 0 25px rgba(255,180,230,0.05);
+}
+
+/* GLOW BORDER */
+
+.player::before{
+
+    content:"";
+
+    position:absolute;
+    inset:-2px;
+
+    border-radius:32px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #3a163f,
+    #9a4fff,
+    #ff9de1,
+    #3a163f);
+
+    background-size:300% 300%;
+
+    animation:borderMove 10s linear infinite;
+
+    z-index:-1;
+
+    filter:blur(16px);
+
+    opacity:0.45;
+}
+
+@keyframes borderMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* SHIMMER */
+
+.shimmer{
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.04),
+    transparent);
+
+    animation:shimmer 7s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes shimmer{
+
+    from{
+        transform:translateX(-140%);
+    }
+
+    to{
+        transform:translateX(140%);
+    }
+}
+
+/* TITLE */
+
+.title{
+
+    text-align:center;
+
+    color:#ffd6f3;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:14px;
+
+    text-shadow:
+    0 0 12px rgba(255,180,230,0.7),
+    0 0 25px rgba(255,180,230,0.25);
+
+    animation:titlePulse 4s ease-in-out infinite;
+}
+
+@keyframes titlePulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+}
+
+
+
+.lyrics-box{
+
+    position:relative;
+
+    height:185px;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.015),
+    rgba(255,180,230,0.02));
+
+    border:1px solid rgba(255,180,230,0.05);
+
+    margin-bottom:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+
+.lyrics-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,180,230,0.13),
+    transparent 70%);
+
+    filter:blur(40px);
+
+    animation:pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:0.4;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+}
+
+
+
+.lyrics{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+}
+
+.line{
+
+    position:absolute;
+
+    left:50%;
+
+    width:86%;
+
+    transform:
+    translateX(-50%)
+    translateY(55px)
+    scale(0.92);
+
+    text-align:center;
+
+    color:#ffffff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1.45;
+
+    opacity:0;
+
+    transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+
+    text-shadow:
+    0 0 12px rgba(255,180,230,0.35);
+
+    z-index:5;
+}
+
+.line.active{
+
+    opacity:1;
+
+    transform:
+    translateX(-50%)
+    translateY(0px)
+    scale(1);
+
+    animation:lyricGlow 2s ease infinite;
+}
+
+@keyframes lyricGlow{
+
+    0%,100%{
+
+        text-shadow:
+        0 0 10px rgba(255,180,230,0.35);
+    }
+
+    50%{
+
+        text-shadow:
+        0 0 20px rgba(255,180,230,0.9),
+        0 0 35px rgba(255,180,230,0.35);
+    }
+}
+
+.line.previous{
+
+    opacity:0.12;
+
+    transform:
+    translateX(-50%)
+    translateY(-58px)
+    scale(0.9);
+
+    filter:blur(1px);
+}
+
+.line.next{
+
+    opacity:0.12;
+
+    transform:
+    translateX(-50%)
+    translateY(58px)
+    scale(0.9);
+
+    filter:blur(1px);
+}
+
+/* MUSIC WAVES */
+
+.waves{
+
+    position:absolute;
+
+    bottom:12px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:flex-end;
+
+    gap:4px;
+
+    z-index:8;
+}
+
+.bar{
+
+    width:4px;
+
+    height:6px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    to top,
+    #ff5bbd,
+    #ffd8f5);
+
+    box-shadow:
+    0 0 10px rgba(255,180,230,0.45),
+    0 0 25px rgba(255,180,230,0.15);
+
+    position:relative;
+}
+
+
+
+.bar::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:-3px;
+
+    transform:translateX(-50%);
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#fff0fb;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,0.9);
+}
+
+
+
+.wave-line{
+
+    position:absolute;
+
+    bottom:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:180px;
+    height:2px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,180,230,0.3),
+    transparent);
+
+    filter:blur(1px);
+
+    z-index:4;
+}
+
+/* WAVES ANIMATION */
+
+.playing .b1{
+animation:eq1 1s infinite ease-in-out;
+}
+
+.playing .b2{
+animation:eq2 0.7s infinite ease-in-out;
+}
+
+.playing .b3{
+animation:eq3 1.1s infinite ease-in-out;
+}
+
+.playing .b4{
+animation:eq4 0.8s infinite ease-in-out;
+}
+
+.playing .b5{
+animation:eq5 1.3s infinite ease-in-out;
+}
+
+.playing .b6{
+animation:eq6 0.9s infinite ease-in-out;
+}
+
+.playing .b7{
+animation:eq7 1.1s infinite ease-in-out;
+}
+
+.playing .b8{
+animation:eq8 0.6s infinite ease-in-out;
+}
+
+.playing .b9{
+animation:eq9 1.4s infinite ease-in-out;
+}
+
+.playing .b10{
+animation:eq10 0.8s infinite ease-in-out;
+}
+
+.playing .b11{
+animation:eq11 1.2s infinite ease-in-out;
+}
+
+.playing .b12{
+animation:eq12 0.7s infinite ease-in-out;
+}
+
+@keyframes eq1{
+0%,100%{height:6px;}
+50%{height:26px;}
+}
+
+@keyframes eq2{
+0%,100%{height:10px;}
+50%{height:36px;}
+}
+
+@keyframes eq3{
+0%,100%{height:8px;}
+50%{height:28px;}
+}
+
+@keyframes eq4{
+0%,100%{height:6px;}
+50%{height:32px;}
+}
+
+@keyframes eq5{
+0%,100%{height:8px;}
+50%{height:22px;}
+}
+
+@keyframes eq6{
+0%,100%{height:6px;}
+50%{height:34px;}
+}
+
+@keyframes eq7{
+0%,100%{height:8px;}
+50%{height:24px;}
+}
+
+@keyframes eq8{
+0%,100%{height:10px;}
+50%{height:40px;}
+}
+
+@keyframes eq9{
+0%,100%{height:8px;}
+50%{height:18px;}
+}
+
+@keyframes eq10{
+0%,100%{height:6px;}
+50%{height:30px;}
+}
+
+@keyframes eq11{
+0%,100%{height:10px;}
+50%{height:38px;}
+}
+
+@keyframes eq12{
+0%,100%{height:8px;}
+50%{height:20px;}
+}
+
+/* STATUS */
+
+.status{
+
+    text-align:center;
+
+    color:#ffd6f3;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    margin-bottom:10px;
+
+    opacity:0;
+
+    transition:0.4s ease;
+}
+
+.playing .status{
+    opacity:1;
+}
+
+/* AUDIO */
+
+audio{
+
+    width:100%;
+
+    border-radius:12px;
+
+    filter:
+    drop-shadow(0 0 8px rgba(255,180,230,0.12));
+}
+
+/* TIMER */
+
+.timer{
+
+    margin-top:8px;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:rgba(255,255,255,0.45);
+
+    font-size:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="particles" id="particles"></div>
+
+<div class="player" id="player">
+
+<div class="shimmer"></div>
+
+<div class="title">
+BIRTHDAY SONG
+</div>
+
+<div class="lyrics-box">
+
+<div class="lyrics" id="lyrics"></div>
+
+<div class="wave-line"></div>
+
+<div class="waves">
+
+<div class="bar b1"></div>
+<div class="bar b2"></div>
+<div class="bar b3"></div>
+<div class="bar b4"></div>
+<div class="bar b5"></div>
+<div class="bar b6"></div>
+<div class="bar b7"></div>
+<div class="bar b8"></div>
+<div class="bar b9"></div>
+<div class="bar b10"></div>
+<div class="bar b11"></div>
+<div class="bar b12"></div>
+
+</div>
+
+</div>
+
+<div class="status">
+NOW PLAYING
+</div>
+
+<audio id="audio" controls>
+
+<source src="https://github.com/clockmaster124/birthdaysong/raw/refs/heads/main/Track%202%20-%20HBD%20blue.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="timer">
+
+<span id="current">0:00</span>
+<span id="duration">0:00</span>
+
+</div>
+
+</div>
+
+<script>
+
+const lyricsData = [
+
+{time:0.38,text:"Blue, today's your shining day, candles glow and friends all say"},
+{time:6.20,text:"You light the room with every smile, stay and laugh with us a while"},
+{time:10.98,text:"Every heartbeat sings for you"},
+{time:13.00,text:"Every cheer is loud and true"},
+{time:15.18,text:"We raise our voices, make it clear"},
+{time:17.40,text:"Blue, we're glad you're here"},
+{time:19.44,text:"Happy birthday, Blue, let the stars align"},
+{time:24.18,text:"Dance to the rhythm, let the joy be mine"},
+{time:27.92,text:"We'll sing together, the night feels new"},
+{time:32.18,text:"Happy birthday, Blue, this song's for you"}
+
+];
+
+const lyricsContainer =
+document.getElementById("lyrics");
+
+lyricsData.forEach((lyric)=>{
+
+const div =
+document.createElement("div");
+
+div.className = "line";
+
+div.dataset.time =
+lyric.time;
+
+div.innerText =
+lyric.text;
+
+lyricsContainer.appendChild(div);
+
+});
+
+const lines =
+document.querySelectorAll(".line");
+
+const audio =
+document.getElementById("audio");
+
+const player =
+document.getElementById("player");
+
+const current =
+document.getElementById("current");
+
+const duration =
+document.getElementById("duration");
+
+audio.addEventListener("play",()=>{
+
+player.classList.add("playing");
+
+});
+
+audio.addEventListener("pause",()=>{
+
+player.classList.remove("playing");
+
+});
+
+audio.addEventListener("ended",()=>{
+
+player.classList.remove("playing");
+
+});
+
+audio.addEventListener("loadedmetadata",()=>{
+
+const mins =
+Math.floor(audio.duration/60);
+
+const secs =
+Math.floor(audio.duration%60);
+
+duration.textContent =
+mins + ":" + (secs < 10 ? "0":"") + secs;
+
+});
+
+audio.addEventListener("timeupdate",()=>{
+
+const time =
+audio.currentTime;
+
+const mins =
+Math.floor(time/60);
+
+const secs =
+Math.floor(time%60);
+
+current.textContent =
+mins + ":" + (secs < 10 ? "0":"") + secs;
+
+lines.forEach((line,index)=>{
+
+const currentTime =
+parseFloat(line.dataset.time);
+
+const nextTime =
+index < lines.length-1
+? parseFloat(lines[index+1].dataset.time)
+: 999;
+
+line.classList.remove(
+"active",
+"previous",
+"next"
+);
+
+if(time >= currentTime &&
+time < nextTime){
+
+line.classList.add("active");
+
+if(lines[index-1]){
+
+lines[index-1]
+.classList.add("previous");
+}
+
+if(lines[index+1]){
+
+lines[index+1]
+.classList.add("next");
+}
+}
+});
+});
+
+/* PARTICLES */
+
+const particles =
+document.getElementById("particles");
+
+for(let i=0;i<65;i++){
+
+const p =
+document.createElement("span");
+
+p.style.left =
+Math.random()*100 + "%";
+
+p.style.animationDuration =
+(8 + Math.random()*10) + "s";
+
+particles.appendChild(p);
+
+}
+
+</script>
+
+</body>
+</html>
