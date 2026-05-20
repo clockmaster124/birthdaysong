@@ -35,7 +35,7 @@ body{
     #000000 100%);
 }
 
-/* BACKGROUND AURORA */
+/* AURORA */
 
 body::before{
 
@@ -144,7 +144,7 @@ body::before{
 
     position:relative;
 
-    width:min(430px,90vw);
+    width:min(440px,90vw);
 
     padding:18px;
 
@@ -167,7 +167,7 @@ body::before{
     inset 0 0 25px rgba(255,180,230,0.05);
 }
 
-/* GLOW BORDER */
+/* BORDER */
 
 .player::before{
 
@@ -278,13 +278,13 @@ body::before{
     }
 }
 
-
+/* LYRIC BOX */
 
 .lyrics-box{
 
     position:relative;
 
-    height:185px;
+    height:190px;
 
     overflow:hidden;
 
@@ -305,7 +305,7 @@ body::before{
     align-items:center;
 }
 
-
+/* CENTER GLOW */
 
 .lyrics-box::before{
 
@@ -341,7 +341,7 @@ body::before{
     }
 }
 
-
+/* LYRICS */
 
 .lyrics{
 
@@ -438,13 +438,37 @@ body::before{
     filter:blur(1px);
 }
 
-/* MUSIC WAVES */
+/* WAVE LINE */
+
+.wave-line{
+
+    position:absolute;
+
+    bottom:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:2px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,180,230,0.3),
+    transparent);
+
+    filter:blur(1px);
+}
+
+/* WAVES */
 
 .waves{
 
     position:absolute;
 
-    bottom:12px;
+    bottom:10px;
     left:50%;
 
     transform:translateX(-50%);
@@ -454,7 +478,7 @@ body::before{
 
     gap:4px;
 
-    z-index:8;
+    z-index:10;
 }
 
 .bar{
@@ -478,8 +502,6 @@ body::before{
     position:relative;
 }
 
-
-
 .bar::after{
 
     content:"";
@@ -502,81 +524,20 @@ body::before{
     0 0 10px rgba(255,255,255,0.9);
 }
 
+/* WAVE ANIMATIONS */
 
-
-.wave-line{
-
-    position:absolute;
-
-    bottom:20px;
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:180px;
-    height:2px;
-
-    background:
-    linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,180,230,0.3),
-    transparent);
-
-    filter:blur(1px);
-
-    z-index:4;
-}
-
-/* WAVES ANIMATION */
-
-.playing .b1{
-animation:eq1 1s infinite ease-in-out;
-}
-
-.playing .b2{
-animation:eq2 0.7s infinite ease-in-out;
-}
-
-.playing .b3{
-animation:eq3 1.1s infinite ease-in-out;
-}
-
-.playing .b4{
-animation:eq4 0.8s infinite ease-in-out;
-}
-
-.playing .b5{
-animation:eq5 1.3s infinite ease-in-out;
-}
-
-.playing .b6{
-animation:eq6 0.9s infinite ease-in-out;
-}
-
-.playing .b7{
-animation:eq7 1.1s infinite ease-in-out;
-}
-
-.playing .b8{
-animation:eq8 0.6s infinite ease-in-out;
-}
-
-.playing .b9{
-animation:eq9 1.4s infinite ease-in-out;
-}
-
-.playing .b10{
-animation:eq10 0.8s infinite ease-in-out;
-}
-
-.playing .b11{
-animation:eq11 1.2s infinite ease-in-out;
-}
-
-.playing .b12{
-animation:eq12 0.7s infinite ease-in-out;
-}
+.playing .b1{animation:eq1 1s infinite ease-in-out;}
+.playing .b2{animation:eq2 0.7s infinite ease-in-out;}
+.playing .b3{animation:eq3 1.1s infinite ease-in-out;}
+.playing .b4{animation:eq4 0.8s infinite ease-in-out;}
+.playing .b5{animation:eq5 1.3s infinite ease-in-out;}
+.playing .b6{animation:eq6 0.9s infinite ease-in-out;}
+.playing .b7{animation:eq7 1.1s infinite ease-in-out;}
+.playing .b8{animation:eq8 0.6s infinite ease-in-out;}
+.playing .b9{animation:eq9 1.4s infinite ease-in-out;}
+.playing .b10{animation:eq10 0.8s infinite ease-in-out;}
+.playing .b11{animation:eq11 1.2s infinite ease-in-out;}
+.playing .b12{animation:eq12 0.7s infinite ease-in-out;}
 
 @keyframes eq1{
 0%,100%{height:6px;}
@@ -760,7 +721,36 @@ const lyricsData = [
 {time:19.44,text:"Happy birthday, Blue, let the stars align"},
 {time:24.18,text:"Dance to the rhythm, let the joy be mine"},
 {time:27.92,text:"We'll sing together, the night feels new"},
-{time:32.18,text:"Happy birthday, Blue, this song's for you"}
+{time:32.18,text:"Happy birthday, Blue, this song's for you"},
+{time:36.42,text:"Memories made and dreams to chase, you bring the fire, you set the pace"},
+{time:40.22,text:"Another year, another chance to shine your light, to take your stance"},
+{time:45.02,text:"Every heartbeat sings for you"},
+{time:47.02,text:"Every cheer is loud and true"},
+{time:49.16,text:"We raise our voices, make it clear"},
+{time:51.38,text:"Blue, we're glad you're here"},
+{time:53.44,text:"Happy birthday, Blue, let the stars align"},
+{time:58.14,text:"Dance to the rhythm, let the joy be mine"},
+{time:61.92,text:"We'll sing together, the night feels new"},
+{time:66.18,text:"Happy birthday, Blue, this song's for you"},
+{time:70.64,text:"So blow the candles, make a wish"},
+{time:74.86,text:"Life's a feast, enjoy each dish"},
+{time:78.62,text:"With every step, the world will see, Blue, you're meant to be free"},
+{time:85.40,text:"Happy birthday, Blue, let the stars align"},
+{time:90.16,text:"Dance to the rhythm, let the joy be mine"},
+{time:93.92,text:"We'll sing together, the night feels new"},
+{time:98.14,text:"Happy birthday, Blue, this song's for you"},
+{time:101.44,text:"Happy birthday, Blue, let the stars align"},
+{time:106.16,text:"Dance to the rhythm, let the joy be mine"},
+{time:109.90,text:"We'll sing together, the night feels new"},
+{time:114.18,text:"Happy birthday, Blue, this song's for you"},
+{time:117.64,text:"So blow the candles, make a wish"},
+{time:121.40,text:"Life's a feast, enjoy each dish"},
+{time:124.92,text:"With every step, the world will see, Blue, you're meant to be free"},
+{time:133.44,text:"Happy birthday, Blue, let the stars align"},
+{time:138.14,text:"Dance to the rhythm, let the joy be mine"},
+{time:141.94,text:"We'll sing together, the night feels new"},
+{time:146.18,text:"Happy birthday, Blue, this song's for you"},
+{time:150.42,text:"Happy birthday, Blue, this song's for you"}
 
 ];
 
@@ -885,7 +875,7 @@ lines[index+1]
 const particles =
 document.getElementById("particles");
 
-for(let i=0;i<65;i++){
+for(let i=0;i<70;i++){
 
 const p =
 document.createElement("span");
